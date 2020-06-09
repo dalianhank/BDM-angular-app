@@ -1,0 +1,29 @@
+<h2>Broker List</h2>
+<ul class="brokers">
+  <li
+    *ngFor="let broker of brokers"
+    [class.selected]="broker === selectedBroker"
+    (click)="onSelect(broker)"
+  >
+    <span class="badge">{{ broker.npn }}</span> {{ broker.firstName }}
+    {{ broker.lastName }}
+  </li>
+</ul>
+
+<div *ngIf="selectedBroker">
+  <h2>
+    {{ selectedBroker.firstName | uppercase }}
+    {{ selectedBroker.lastName | uppercase }} Details
+  </h2>
+  <div><span>NPN </span>{{ selectedBroker.npn }}</div>
+  <div>
+    <label
+      >First Name:
+      <input [(ngModel)]="selectedBroker.firstName" placeholder="First Name" />
+    </label>
+    <label
+      >Last Name:
+      <input [(ngModel)]="selectedBroker.lastName" placeholder="Last Name" />
+    </label>
+  </div>
+</div>
