@@ -9,12 +9,11 @@ import { Broker } from "../model/broker";
   providedIn: "root",
 })
 export class BrokerService {
-  private brokersUrl = "http://localhost:5000/v1/BrokerList"; // URL to web api
+  private brokersUrl = "https://localhost:5001/v1/BrokerList"; // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json"
     }),
   };
 

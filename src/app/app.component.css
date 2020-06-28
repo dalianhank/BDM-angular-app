@@ -12,6 +12,7 @@ h3 {
 }
 body {
   margin: 2em;
+  padding: 2em;
 }
 body,
 input[type="text"],
