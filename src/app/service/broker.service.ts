@@ -5,23 +5,26 @@ import { catchError } from "rxjs/operators";
 
 import { Broker } from "../model/broker";
 
+
 @Injectable({
   providedIn: "root",
 })
 export class BrokerService {
   private brokersUrl = "https://localhost:5001/v1/BrokerList"; // URL to web api
+  private token = localStorage.getItem('token');
 
   httpOptions = {
-    headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    }),
-  };
+    headers: new HttpHeaders({     
+      'Content-Type':  'application/json',
+      'Authorization': 'Bearer ' + this.token
+    })
+  }; 
 
   constructor(private http: HttpClient) {}
 
   getBrokers(): Observable<Broker[]> {
     return this.http
-      .get<Broker[]>(this.brokersUrl)
+      .get<Broker[]>(this.brokersUrl, this.httpOptions)
       .pipe(catchError(this.handleError<Broker[]>("getBrokers", [])));
   }
 
