@@ -10,7 +10,7 @@ import { Broker } from "../model/broker";
   providedIn: "root",
 })
 export class BrokerService {
-  private brokersUrl = "https://localhost:5001/v1/BrokerList"; // URL to web api
+  private brokersUrl = "https://localhost:5001/Clients/ABC"; // URL to web api
   private token = localStorage.getItem('token');
 
   httpOptions = {
@@ -26,6 +26,12 @@ export class BrokerService {
     return this.http
       .get<Broker[]>(this.brokersUrl, this.httpOptions)
       .pipe(catchError(this.handleError<Broker[]>("getBrokers", [])));
+  }
+
+  updateBroker(broker: Broker): Observable<Broker>{
+    var updateBrokerUrl = 'https://localhost:5001/Clients/' + broker.clientName + '/NPN/' + broker.npn; 
+    return this.http.put<Broker>(updateBrokerUrl, broker, this.httpOptions)
+          .pipe(catchError(this.handleError<Broker>("updateBroker", broker)));
   }
 
   /**

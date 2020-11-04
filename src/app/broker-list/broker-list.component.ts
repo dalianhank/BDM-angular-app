@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 import { Broker } from "../model/broker";
+import { AuthService } from '../service/auth.service';
 import { BrokerService } from "../service/broker.service";
 
 @Component({
@@ -11,10 +13,17 @@ export class BrokerListComponent implements OnInit {
   selectedBroker: Broker;
 
   brokers: Broker[];
-  constructor(private brokerService: BrokerService) {}
+  constructor(private brokerService: BrokerService,              
+              private router: Router,
+              public authService: AuthService ) 
+  {  }
 
   ngOnInit(): void {
-    this.getBrokers();
+    if(this.authService.isLoggedIn()){
+      this.getBrokers();
+    }else{
+      this.router.navigate(['login']);
+    }
   }
 
   onSelect(broker: Broker): void {
@@ -25,5 +34,11 @@ export class BrokerListComponent implements OnInit {
     this.brokerService
       .getBrokers()
       .subscribe((brokers) => (this.brokers = brokers));
+  }
+
+  updateRecord(broker: Broker): void{
+    this.brokerService
+      .updateBroker(this.selectedBroker)
+      .subscribe((broker) => (this.selectedBroker = broker));      
   }
 }

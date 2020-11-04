@@ -9,5 +9,5 @@ import { AuthService } from '../service/auth.service';
 export class HomeComponent {
 
   constructor(public authService: AuthService) { }
-
+    
 }
