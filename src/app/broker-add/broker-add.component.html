@@ -1,0 +1,29 @@
+<h2>Add new broker!</h2>
+<div>
+        <ul>
+                <li>
+                        <label>First Name:
+                                <input [(ngModel)]="newBroker.firstName" placeholder="First Name" />
+                        </label>
+                </li>
+                <li>
+                        <label>Last Name:
+                                <input [(ngModel)]="newBroker.lastName" placeholder="Last Name" />
+                        </label>
+                </li>
+                <li>
+                        <label>NPN:
+                                <input [(ngModel)]="newBroker.npn" placeholder="NPN" />
+                        </label>
+                </li>
+                <li>
+                        <label>Client Name:
+                                <input [(ngModel)]="newBroker.clientName" placeholder="Client Name" />
+                        </label>
+                </li>
+        </ul>
+        <button class="button button-prime" (click)=addBroker(newBroker)>Add</button>
+</div>
+<div>
+        <a routerLink="/brokerlist">Broker List</a>
+</div>

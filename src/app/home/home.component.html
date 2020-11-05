@@ -4,7 +4,10 @@
 </p>
 <ul>
   <li *ngIf="authService.isLoggedIn() && authService.currentUser.admin">
-    <a routerLink="/brokerlist">Broker List</a>
+    <a routerLink="/brokerlist">Broker List</a>    
+  </li>
+  <li *ngIf="authService.isLoggedIn() && authService.currentUser.admin">    
+    <a routerLink="/addbroker">Add New Broker</a>
   </li>
   <li *ngIf="!authService.isLoggedIn()"><a routerLink="/login">Login</a></li>
   <li *ngIf="authService.isLoggedIn()"><a (click)="authService.logout()">Logout</a></li>

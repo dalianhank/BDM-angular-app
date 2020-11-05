@@ -28,6 +28,12 @@ export class BrokerService {
       .pipe(catchError(this.handleError<Broker[]>("getBrokers", [])));
   }
 
+  addBroker(broker: Broker): Observable<Broker>{
+    var updateBrokerUrl = 'https://localhost:5001/Clients/' + broker.clientName + '/NPN/' + broker.npn; 
+    return this.http.post<Broker>(updateBrokerUrl, broker, this.httpOptions)
+          .pipe(catchError(this.handleError<Broker>("updateBroker", broker)));
+  }
+
   updateBroker(broker: Broker): Observable<Broker>{
     var updateBrokerUrl = 'https://localhost:5001/Clients/' + broker.clientName + '/NPN/' + broker.npn; 
     return this.http.put<Broker>(updateBrokerUrl, broker, this.httpOptions)
