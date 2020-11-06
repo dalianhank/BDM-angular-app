@@ -24,8 +24,7 @@ import { BrokerAddComponent } from './broker-add/broker-add.component';
     HttpModule,
     AppRoutingModule],
   providers: [
-    BrokerService,
-    
+    BrokerService,    
     AuthService,
 
     // For creating a mock back-end. You don't need these in a real app. 

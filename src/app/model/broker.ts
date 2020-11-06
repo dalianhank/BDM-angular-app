@@ -1,7 +1,10 @@
+import { Email } from './email';
+
 export interface Broker {
   clientName: string;
   npn: string;
   firstName: string;
   lastName: string;
-  email: string;
+  dateOfBirth: Date;
+  emailAddresses: Email[];
 }

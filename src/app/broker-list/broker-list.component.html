@@ -15,16 +15,40 @@
     {{ selectedBroker.firstName | uppercase }}
     {{ selectedBroker.lastName | uppercase }} Details
   </h2>
-  <div><span>NPN </span>{{ selectedBroker.npn }}</div>
+  <div><span>Client Name</span>{{ selectedBroker.clientName }} <span> NPN </span>{{ selectedBroker.npn }} </div>
   <div>
-    <label
-      >First Name:
-      <input [(ngModel)]="selectedBroker.firstName" placeholder="First Name" />
-    </label>
-    <label
-      >Last Name:
-      <input [(ngModel)]="selectedBroker.lastName" placeholder="Last Name" />
-    </label>
+    <ul class="brokers">
+      <li>
+        <label>First Name:
+          <input [(ngModel)]="selectedBroker.firstName" placeholder="First Name" />
+        </label>
+      </li>
+      <li>
+        <label>Last Name:
+          <input [(ngModel)]="selectedBroker.lastName" placeholder="Last Name" />
+        </label>
+      </li>
+      <li>
+        <label>BirthDay:
+          <input [ngModel]="selectedBroker.dateOfBirth | date:'yyyy-MM-dd'" 
+              (ngModelChange)="selectedBroker.dateOfBirth=$event" type="date" placeholder="BirthDay" />
+        </label>
+      </li>
+      <div *ngFor="let email of emails">
+        <li>
+          <label>Email Address</label>
+          <input [(ngModel)]="email.emailAddress" placeholder="Email Address" type="email">
+        </li>
+        <li>
+          <div class="form-group">
+            <label for="types">Email Address Type : {{ emailAddressTypeEnum[email.emailAddressType] }}</label>            
+            <!-- <select class="form-control" name="types" [(ngModel)]="email.emailAddressType">
+               <option *ngFor="let key of keys"  [value]= "key" [selected]="email.emailAddressType == key">{{emailAddressTypeEnum[key]}}</option>
+            </select> -->
+        </div>
+        </li>
+      </div>
+    </ul>     
   </div>
   <div>
     <button class="btn btn-primary" (click) = updateRecord(selectedBroker)>Update record</button>
